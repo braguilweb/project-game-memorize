@@ -1,0 +1,23 @@
+
+
+.animated-element {
+    width: 100px;
+    height: 100px;
+    background-color: #3498db;
+    opacity: 0;
+    transform: scale(0);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+
+  .animated-element:hover {
+    transform: scale(1.2) rotate(5deg);
+  }
+
+  .animated-element:hover::after {
+    content: '\1F609'; /* Adicione um emoji ou substitua por outro conteúdo desejado */
+    font-size: 24px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }

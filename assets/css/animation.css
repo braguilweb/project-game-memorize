@@ -1,0 +1,125 @@
+
+
+
+
+body {
+  box-sizing: border-box;
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+}
+
+@keyframes introduceBadge {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes pulseBadge {
+  0% {
+    transform: scale(1)
+  }
+  
+  50% {
+    transform: scale(1.05)
+  }
+  
+  100% {
+    transform: scale(1)
+  }
+}
+
+@keyframes pulseBadge2 {
+  0% {
+    transform: scale(1)
+  }
+  
+  50% {
+    transform: scale(1.1)
+  }
+  
+  100% {
+    transform: scale(1)
+  }
+}
+
+.badge {
+  animation: introduceBadge 1s linear 0s 1 both;
+  background: rgba(#0071f6, 0.2);
+  border-radius: 50%;
+  height: 70px;
+  perspective: 500px;
+  position: relative;
+ /* background-color: #04e2ff;*/
+  width: 70px;
+
+  &:before,
+  &:after {
+    animation: pulseBadge 4s cubic-bezier(0.860, 0.000, 0.070, 1.000) 5s infinite both;
+    border: 3px dashed #fffb00;
+    border-radius: inherit;
+    bottom: -16px;
+    content: "";
+    left: -16px;
+    opacity: 0.2;
+    position: absolute;
+    right: -16px;
+    top: -16px;
+  }
+
+  &:after {
+    animation-name: pulseBadge2;
+    bottom: -32px;
+    left: -32px;
+    opacity: 0.1;
+    right: -32px;
+    top: -32px;
+  }
+}
+
+@keyframes introduceLabel {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.4) rotateY(-1800deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotateY(20deg);
+  }
+}
+
+@keyframes rotateLabel {
+  0% {
+    transform: translate(-50%, -50%) rotateY(20deg);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) rotateY(-20deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotateY(20deg);
+  }
+}
+
+.alvo {
+  animation: introduceLabel 2s cubic-bezier(0.19, 10, 0.22, 3) 1s 1 both,
+    rotateLabel 5s linear 5s infinite;
+  color: #fff;
+  font-size: 60px;
+  font-weight: 900;
+  left: 50%;
+  font-family: 'Montserrat', sans-serif;
+
+  position: absolute;
+  text-align: center;
+  text-shadow: 0px 4px 8px rgba(#0071f6, 0.2);
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

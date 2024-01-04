@@ -1,0 +1,14 @@
+.rodape {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    font-family: 'Montserrat',sans-serif;
+    color: aliceblue;
+    margin-top: 0px;
+    
+}
+.rodape p {
+    margin: 0;
+}

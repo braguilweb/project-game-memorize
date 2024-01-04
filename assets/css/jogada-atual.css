@@ -1,0 +1,38 @@
+.jogada_atual {
+    margin-top: 5px;
+    display: flex;
+    width: 350px;
+    height: 50px;
+    justify-content: center;
+}
+.jogada {
+    display: flex;
+    width: 200px;
+    justify-content: space-between;
+}
+.jogada p {
+    margin: 0;
+    display: flex;
+    width: 30%;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+   
+}
+.resultado {
+    display: flex;
+    
+    justify-content: space-between;
+}
+
+.resultado p {
+    margin: 0;
+    display: flex;
+    
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+   
+}

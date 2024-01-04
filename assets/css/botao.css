@@ -1,0 +1,55 @@
+.botao {
+    display: flex;
+    width: 95%;
+    justify-content: space-around;
+    padding-top: 20px;
+}
+.button-jogar {
+    width: 120px;
+    height: 40px;
+    background-color: #eef10c9f;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: #000000;
+    border-radius: 20px;
+    border: none;
+    overflow: hidden;
+    
+}
+.button-jogar:hover{
+    cursor: pointer;
+}
+
+.button-sair {
+    width: 120px;
+    height: 40px;
+    background-color: #eef10c9f;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: #000000;
+    border-radius: 20px;
+    border: none;
+    overflow: hidden;
+    
+}
+.button-sair:hover{
+    cursor: pointer;
+}
+
+.button-avaliar {
+    
+    display: block;
+    
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: #000000;
+    border-radius: 20px;
+    border: none;
+    margin-top: 5px;
+    margin-bottom: 4px;
+   
+
+}

@@ -1,0 +1,26 @@
+.inicio {
+     margin-top: 20px;
+     font-family: 'Montserrat', sans-serif;
+}
+.score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.score p{
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+}
+
+.time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.time p{
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+}
+
