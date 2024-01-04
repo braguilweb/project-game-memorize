@@ -459,7 +459,7 @@ function atualizarRelatorio() {
 
     const linkAvaliacao = document.createElement('a')
     linkAvaliacao.className = 'button-avaliar'
-    linkAvaliacao.href = 'https.estudiobraga.online'
+    linkAvaliacao.href = 'https://www.estudiobraga.online'
     linkAvaliacao.textContent = 'Avaliar Jogo'
     linkAvaliacao.target = '_blank'
 
