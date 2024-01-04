@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/banner-inicial.css">
+    <link rel="stylesheet" href="./assets/css/animation.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;400;700&family=Mitr:wght@200;400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/inicio.css">
+    <link rel="stylesheet" href="./assets/css/jogada-atual.css">
+    <link rel="stylesheet" href="./assets/css/botao.css">
+    <link rel="stylesheet" href="./assets/css/texto.css">
+    <link rel="stylesheet" href="./assets/css/animation-style.css">
+    <link rel="stylesheet" href="./assets/css/relatorio.css">
+    <link rel="stylesheet" href="./assets/css/rodape.css">
+    <title>Jogo: Acerte a sequencia!</title>
+</head>
+<body>
+    <header>
+        <nav class="inicio">
+            <div>                
+                <div class="score"></div>
+                <span>score</span>
+            </div>
+            <div class="broadcasting">
+               <p></p> 
+            </div>
+            <div>
+                <div class="time"></div>
+                <span>time</span>
+            </div>
+            
+
+        </nav>
+          
+    </header>
+    <section class="numero-alvo">
+        <div>
+            <div class="badge"></div>
+        </div>
+    </section>
+    <section class="lista_a"></section>
+    <section class="lista_b"></section>
+    <section class="lista_c"></section>
+    <section class="lista_d"></section>
+    <section class="lista_e"></section>
+    <section class="jogada_atual">
+        <div class="jogada">
+           <!-- <p>número da jogada</p> -->            
+        </div>
+        <div class="resultado">
+           <!-- <p id="soma"></p> -->
+        </div>
+        
+    </section>
+    <section class="botao">
+        <button id="button-jogar" class="button-jogar">Jogar</button>
+        <button id="button-sair" class="button-sair" >Sair</button>
+    </section>
+    <section class="banner-inicial">
+        <h1>Memorize</h1>
+        <h2>Desafio Cognitivo</h2>           
+    </section>
+    <section class="texto">
+        <p>
+            Esse é um jogo que testa e aprimora 
+            suas habilidades de memória e 
+            raciocínio rápido. Você terá que 
+            memorizar uma sequência de números 
+            apresentada por um tempo limitado e, 
+            em seguida, clicar nos números corretos para
+            alcançar o número alvo. <br>Em cada jogada você deverá
+            escolher 3 números, a soma deles
+            deverá ser igual ao valor do número alvo. 
+            A cada acerto, você ganha 1 ponto e 10 segundos extras.
+            Mas a cada erro você perde 1 ponto! Pronto pro desafio?
+            
+
+        </p>
+    </section>
+    <section class="relatorio" id="relatorioSection">
+        <div class="relatorio__titulo">Dados do Jogo</div>
+        <div class="relatorio__resumo">
+            <p>Numero Alvo: 10 | Tentativas: 3 | Pontos: -2</p>
+            
+        </div>
+        <div class="relatorio__detalhado">
+            <p class="relatorio__texto">1ª Tentativa: 1 4 5 = 10 Acertou</p>            
+            <p class="relatorio__texto">2ª Tentativa: 6 4 5 = 7 Errou</p>
+            <p class="relatorio__texto">3ª Tentativa: 6 4 5 = 7 Errou</p>
+        </div>
+
+    </section>    
+    <footer class="rodape">
+        <p>Desenvolvido por Guilherme Braga</p>
+        <p>2024</p>
+    </footer>
+    
+    
+ 
+<script src="./assets/js/script.js"></script>    
+</body>
+</html>
