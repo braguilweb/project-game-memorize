@@ -175,6 +175,20 @@ console.log(linhaA, linhaB, linhaC, linhaD, linhaE)
 console.log(mapId)
 console.log(mapValor)
 
+const sequencias = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S'];
+const combinacoes = [];
+
+for (let i = 0; i < sequencias.length; i++) {
+    for (let j = 0; j < sequencias.length; j++) {
+        for (let k = 0; k < sequencias.length; k++) {
+            if (sequencias[i] !== sequencias[j] && sequencias[j] !== sequencias[k] && sequencias[i] !== sequencias[k]) {
+                combinacoes.push([sequencias[i], sequencias[j], sequencias[k]]);
+            }
+        }
+    }
+}
+
+console.log(combinacoes);
 
 
         
