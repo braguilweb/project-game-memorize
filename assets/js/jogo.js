@@ -5,6 +5,7 @@ import { aumentarTempo, tempoRestante } from "./tempo.js";
 export let numeroAlvo 
 export let statusRodada = false;
 export let relatorioRodadas = []
+export let maximoDePontos = []
 export let pontos = 0
 export let listaNumerosAlvo = []
 export let listaIdPontuados = []
@@ -21,6 +22,10 @@ export let combinacoesDeJogadas = []
 export let gabaritoDeJogadasOk =[]
 
 
+export let listaNumeroAlvo = []
+export const contagemValoresNumeroAlvo = []
+
+
 
 
 //função que inicia o jogo
@@ -30,7 +35,7 @@ export function iniciarJogo() {
     alterarMensagem('Memorize os números!')
     
 
-    numeroAlvo = gerarNumeroAleatorio(5, 20)
+    numeroAlvo = []
 
     const escondeButtonJogar = document.querySelector('.button-jogar')
     escondeButtonJogar.style.display = 'none'
@@ -39,11 +44,11 @@ export function iniciarJogo() {
     escondeButtonSair.style.display = 'initial'
     console.log('Jogo ligado')
 
-    //Esconde Txto inicial
+    //Esconde Texto inicial
     const escondeTexto = document.querySelector('.texto');
     escondeTexto.style.display = 'none'
 
-    //Esconde baner inicial
+    //Esconde banner inicial
 
     const escondeBannerInicial = document.querySelector('.banner-inicial');
     escondeBannerInicial.style.display = 'none'
@@ -71,15 +76,15 @@ export function iniciarJogo() {
         {id: 'c5', mascara: 'L', valor:gerarNumeroAleatorio(1, 10)}
     ];
     let lista_d = [
-        {id: 'd1', mascara: 'M', valor:gerarNumeroAleatorio(1, 6)},
-        {id: 'd2', mascara: 'N', valor:gerarNumeroAleatorio(1, 5)}, 
-        {id: 'd3', mascara: 'O', valor:gerarNumeroAleatorio(1, 6)},
-        {id: 'd4', mascara: 'P', valor:gerarNumeroAleatorio(1, 5)}
+        {id: 'd1', mascara: 'M', valor:gerarNumeroAleatorio(1, 10)},
+        {id: 'd2', mascara: 'N', valor:gerarNumeroAleatorio(1, 10)}, 
+        {id: 'd3', mascara: 'O', valor:gerarNumeroAleatorio(1, 10)},
+        {id: 'd4', mascara: 'P', valor:gerarNumeroAleatorio(1, 10)}
     ];
     let lista_e = [
-        {id: 'e1', mascara: 'Q', valor:gerarNumeroAleatorio(1, 6)},
-        {id: 'e2', mascara: 'R', valor:gerarNumeroAleatorio(1, 5)}, 
-        {id: 'e3', mascara: 'S', valor:gerarNumeroAleatorio(1, 7)}
+        {id: 'e1', mascara: 'Q', valor:gerarNumeroAleatorio(1, 10)},
+        {id: 'e2', mascara: 'R', valor:gerarNumeroAleatorio(1, 10)}, 
+        {id: 'e3', mascara: 'S', valor:gerarNumeroAleatorio(1, 10)}
     ];
 
     //Concatenando as listas de a : e
@@ -92,50 +97,82 @@ export function iniciarJogo() {
     )
     
     // adicionando o id na lista completa
-    const mapId = listaNumeroCompleta.map(item=> {
-
-        
+    const mapId = listaNumeroCompleta.map(item=> {    
         listaPosibilidadesDeJogadas.push(
-            item.id
-        )
-       
-    })
-    
+            item.mascara
+        )      
+    })    
 
     // looping que cria as possibilidades de jogadas
-    for (let i = 0; i < listaPosibilidadesDeJogadas.length - 2; i++) {   
-        for (let j = i + 1; j < listaPosibilidadesDeJogadas.length - 1; j++) {
-            for (let k = j + 1; k < listaPosibilidadesDeJogadas.length; k++) {
-                const somaValoresId =   //compara o valor por id e faz a soma
-                    listaNumeroCompleta.find(item => item.id === listaPosibilidadesDeJogadas[i]).valor +
-                    listaNumeroCompleta.find(item => item.id === listaPosibilidadesDeJogadas[j]).valor +
-                    listaNumeroCompleta.find(item => item.id === listaPosibilidadesDeJogadas[k]).valor ;
-                
-                    combinacoesDeJogadas.push(
-                    [
-                        listaPosibilidadesDeJogadas[i], 
-                        listaPosibilidadesDeJogadas[j], 
+    for (let i = 0; i < listaPosibilidadesDeJogadas.length; i++) {   
+        for (let j = 0; j < listaPosibilidadesDeJogadas.length; j++) {
+            for (let k = 0; k < listaPosibilidadesDeJogadas.length; k++) {
+                if (listaPosibilidadesDeJogadas[i] !== listaPosibilidadesDeJogadas[j] && listaPosibilidadesDeJogadas[j] !== listaPosibilidadesDeJogadas[k] && listaPosibilidadesDeJogadas[i] !== listaPosibilidadesDeJogadas[k]) {
+                    
+                    const somaValoresId =   //compara o valor por id e faz a soma
+                    listaNumeroCompleta.find(item => item.mascara === listaPosibilidadesDeJogadas[i]).valor +
+                    listaNumeroCompleta.find(item => item.mascara === listaPosibilidadesDeJogadas[j]).valor +
+                    listaNumeroCompleta.find(item => item.mascara === listaPosibilidadesDeJogadas[k]).valor ;
+
+                    combinacoesDeJogadas.push([
+                        listaPosibilidadesDeJogadas[i],
+                        listaPosibilidadesDeJogadas[j],
                         listaPosibilidadesDeJogadas[k],
-                        somaValoresId,
-                        numeroAlvo
-                    ]
-                )
+                        somaValoresId                        
+                    ])
+                }                              
             }
+        }
+    }      
+
+    // Faz uma busca em combinacoesDeJogadas para contar a ocorrencia de cada valor único
+    for (let i = 0; i < combinacoesDeJogadas.length; i++) {
+        const valor = combinacoesDeJogadas[i][3]; // Pega valor da quarta posição do item
+        let encontrado = false
+
+        // Verifica se o valor já exite na lista de contagem
+        for (let j = 0; j < contagemValoresNumeroAlvo.length; j++) {
+            if (contagemValoresNumeroAlvo[j].valor === valor) {
+                contagemValoresNumeroAlvo[j].quantidade ++
+                encontrado = true;
+                
+                break
+            }
+        }
+        if (!encontrado) {
+            contagemValoresNumeroAlvo.push(
+                {
+                    valor: valor,
+                    quantidade: 1
+                }
+            )
         }
     }
 
-   const combinacaoOk = combinacoesDeJogadas.filter(e => e[3] === numeroAlvo)
-   gabaritoDeJogadasOk = combinacaoOk
+    //Cria a lista de números alvos entre 30 e 60 possibilidades de acertos
+    const criandoListaNumeroAlvo = contagemValoresNumeroAlvo.filter(item => {
+        if (item.quantidade >= 30 && item.quantidade <= 60) {
+            numeroAlvo = item.valor
+            maximoDePontos = item.quantidade
+                        
+            return item.valor, item.quantidade
+        }
+     })
 
+    // Criando lista com jogadas que pontuam
 
-    
-    
-      
+    const combinacaoOk = combinacoesDeJogadas.filter(e => e[3] === numeroAlvo)
+    gabaritoDeJogadasOk = combinacaoOk
 
+     //Consoles
+
+    console.log('numero alvo:',numeroAlvo, 'maximo de pontos:', maximoDePontos)
+    console.log(criandoListaNumeroAlvo)
+    console.log(contagemValoresNumeroAlvo)
     console.log(listaNumeroCompleta)
     console.log(listaPosibilidadesDeJogadas)
     console.log('Combinações aqui: ',combinacoesDeJogadas)
-    console.log(gabaritoDeJogadasOk)
+    console.log(combinacaoOk)
 
     // Função que termina a partida
 
@@ -147,7 +184,7 @@ export function iniciarJogo() {
     })
 
 
-    
+    //Função que imprimi o número alvo na tela do jogo
 
     function criarNumeroAlvo() {
         
@@ -167,14 +204,8 @@ export function iniciarJogo() {
     const numeroAlvoElemento = criarNumeroAlvo();
     const headerBadge = document.querySelector('.badge')
                 //adiciona numero alvo
-    headerBadge.appendChild(numeroAlvoElemento)               
-                
-
-
-
-
+    headerBadge.appendChild(numeroAlvoElemento)             
     
-
 
     //Função que cria o score 0
     function criarScore() {
@@ -188,6 +219,8 @@ export function iniciarJogo() {
     adicionaScore.appendChild(criaElementoScore)
     criarScore()
 
+    //Função que muda o score
+
     function mudarScore () {
         const scoreElemento = document.querySelector('.score');
         while (scoreElemento.firstChild) {
@@ -197,11 +230,8 @@ export function iniciarJogo() {
         const novoScore = criarScore();
         scoreElemento.appendChild(novoScore);
     }
-
     
-    
-    
-    //Função que cria as listas a a e
+    //Função que imprime as listas na tela do jogo
 
     function criarSectionseListas (section, lista) {
         //Mapeia a lista para criar divs com os números aleatórios
@@ -223,17 +253,7 @@ export function iniciarJogo() {
             return div
         })
         const sectionHtml = document.querySelector(`.${section}`) //Seleciona section pelo nome da classe
-        divs.forEach(div => sectionHtml.appendChild(div)); // Adiciona as divs de acordo com a section
-
-        /*
-        //Função  que após 20 segundos altera cor do texto da div
-        setTimeout(()=> {
-            divs.forEach(div => {
-                div.style.color = '#000000';
-                div.textContent = '?'
-            });
-        }, 20000)
-        */
+        divs.forEach(div => sectionHtml.appendChild(div)); // Adiciona as divs de acordo com a section        
     }
 
     //função que limpa a jogada da tela
@@ -242,15 +262,14 @@ export function iniciarJogo() {
         setTimeout(() => {
             const jogadaElemento = document.querySelector('.jogada');
             while (jogadaElemento.firstChild) {
-            jogadaElemento.removeChild(jogadaElemento.firstChild);
-        }
+                jogadaElemento.removeChild(jogadaElemento.firstChild);
+            }
 
-        const somaResultadoElementos = document.querySelector('.resultado');
-        while (somaResultadoElementos.firstChild) {
-            somaResultadoElementos.removeChild(somaResultadoElementos.firstChild)
-        }
-
-        
+            const somaResultadoElementos = document.querySelector('.resultado');
+            while (somaResultadoElementos.firstChild) {
+                somaResultadoElementos.removeChild(somaResultadoElementos.firstChild)
+            }
+ 
         console.log('dados limpos da tela')
         }, 1300)         
         
@@ -370,6 +389,16 @@ export function iniciarJogo() {
                 
             } else { // Se não acertou o alvo perde ponto, reinicia outra rodada
                 pontos--
+                listaIdPontuados.push(idJogados) // adiciona idJogado na lista
+
+                // Adicione informações da rodada ao relatórioRodadas
+                relatorioRodadas.push({
+                    rodada: relatorioRodadas.length + 1,
+                    numerosEscolhidos: rodada.join(' '),
+                    resultado: `= ${somaResultados}`,
+                    status: somaResultados === numeroAlvo ? 'Acertou' : 'Errou'
+                });
+
                 console.log(`GAME OVER! Você escolheu: ${rodada}|Total: ${somaResultados} \nPerdeu 1 ponto `)
                 mudarScore()
                 limparJogada()
