@@ -17,7 +17,11 @@ export function atualizarRelatorio() {
     const resumoRelatorio = document.createElement('div');
     resumoRelatorio.className = 'relatorio__resumo'
     
+<<<<<<< HEAD
     resumoRelatorio.textContent = `Número de Acertos: ${listaRodadaPontuadas.length} | Tentativas: ${listadeIdJogados.length} | Pontos: ${pontos}`;
+=======
+    resumoRelatorio.textContent = `Número de Acertos: ${relatorioRodadas.forEa((item)=> item.rodada++)} | Tentativas: ${relatorioRodadas.length} | Pontos: ${pontos}`;
+>>>>>>> 6b8f7891f6c150b3f61281a0685152b4a55b4d44
 
     const relatorioDetalhado = document.createElement('div');
     relatorioDetalhado.className = 'relatorio__detalhado';
